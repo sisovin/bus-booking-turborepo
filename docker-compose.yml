@@ -29,6 +29,8 @@ services:
       - redis
     networks:
       - backend
+    ports:
+      - "3000:3000"
 
   nextjs:
     build:

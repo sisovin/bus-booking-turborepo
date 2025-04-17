@@ -8,15 +8,15 @@ COPY package.json package-lock.json ./
 RUN npm install
 
 COPY . .
-COPY apps/api apps/web ./
-RUN npm run build
+COPY packages/api ./
+RUN npm run build --prefix packages/api
 
 # Stage 2: Create the production image
 FROM node:14-alpine
 
 WORKDIR /app
 
-COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/packages/api/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package*.json ./
 

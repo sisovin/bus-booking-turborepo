@@ -19,7 +19,7 @@ services:
 
   nestjs:
     build:
-      context: ./apps/api
+      context: ./packages/api
       dockerfile: Dockerfile
     environment:
       DATABASE_URL: postgres://user:password@postgres:5432/mydb
@@ -34,7 +34,7 @@ services:
 
   nextjs:
     build:
-      context: ./apps/web
+      context: ./packages/web
       dockerfile: Dockerfile
     environment:
       API_URL: http://nestjs:3000

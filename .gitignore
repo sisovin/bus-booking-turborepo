@@ -25,6 +25,3 @@ apps/web/out/
 apps/web/.env
 
 # Project root specific rules
-p/node_modules/
-p/dist/
-p/.env

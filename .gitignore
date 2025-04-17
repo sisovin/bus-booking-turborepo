@@ -12,3 +12,19 @@ dist/
 
 # macOS system files
 *.DS_Store
+
+# apps/api specific rules
+apps/api/node_modules/
+apps/api/dist/
+apps/api/.env
+
+# apps/web specific rules
+apps/web/node_modules/
+apps/web/.next/
+apps/web/out/
+apps/web/.env
+
+# Project root specific rules
+p/node_modules/
+p/dist/
+p/.env

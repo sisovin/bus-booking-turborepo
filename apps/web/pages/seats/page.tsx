@@ -12,7 +12,7 @@ const SeatPicker = ({ busId, onSeatSelect }) => {
       setLoading(true);
       setError('');
       try {
-        const response = await axios.get(`/api/buses/${busId}/seats`);
+        const response = await axios.get(`/api/seats/${busId}`);
         setSeats(response.data);
       } catch (err) {
         setError('Failed to fetch seats');
@@ -28,7 +28,7 @@ const SeatPicker = ({ busId, onSeatSelect }) => {
     setLoading(true);
     setError('');
     try {
-      await axios.post('/api/seats/lock', { busId, seatNumber: seat.number });
+      await axios.post('/api/seats/lock`, { busId, seatNumber: seat.number });
       setSelectedSeat(seat);
       onSeatSelect(seat);
     } catch (err) {

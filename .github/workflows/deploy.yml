@@ -27,8 +27,14 @@ jobs:
       - name: Build Next.js application
         run: npm run build --prefix apps/web
 
+      - name: Start Docker containers
+        run: docker-compose up -d
+
       - name: Deploy to Vercel
         run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy to Railway
         run: railway up --token ${{ secrets.RAILWAY_TOKEN }}
+
+      - name: Stop Docker containers
+        run: docker-compose down

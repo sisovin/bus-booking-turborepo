@@ -46,8 +46,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Start Docker containers
+        run: docker-compose up -d
+
       - name: Run NestJS tests
         run: npm run test --prefix apps/api
 
       - name: Run Next.js tests
         run: npm run test --prefix apps/web
+
+      - name: Stop Docker containers
+        run: docker-compose down

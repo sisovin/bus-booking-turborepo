@@ -27,7 +27,7 @@ export class BookingService {
       const booking = await this.prisma.$transaction(async (prisma) => {
         // Check if the seat is already booked
         const existingBooking = await prisma.booking.findFirst({
-          where: { busId, seatNumber },
+          where: { busId, seatNumber, deletedAt: null },
         });
         if (existingBooking) {
           throw new Error('Seat is already booked');
@@ -53,7 +53,7 @@ export class BookingService {
 
   async getBookingById(id: string): Promise<BookingResponseDto> {
     const booking = await this.prisma.booking.findUnique({
-      where: { id },
+      where: { id, deletedAt: null },
     });
     if (!booking) {
       throw new Error('Booking not found');

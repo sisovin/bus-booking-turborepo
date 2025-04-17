@@ -7,7 +7,7 @@ export class SeatService {
 
   async getAvailableSeats(busId: string): Promise<any[]> {
     const seats = await this.redisService.getSeats(busId);
-    return seats.filter(seat => !seat.locked);
+    return seats.filter(seat => !seat.locked && !seat.deletedAt);
   }
 
   async lockSeat(busId: string, seatNumber: string): Promise<boolean> {

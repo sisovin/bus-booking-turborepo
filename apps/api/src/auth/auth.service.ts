@@ -2,10 +2,14 @@ import { Injectable } from '@nestjs/common';
 import * as argon2 from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly jwtService: JwtService) {}
+  constructor(
+    private readonly jwtService: JwtService,
+    private readonly prisma: PrismaService,
+  ) {}
 
   async hashPassword(password: string): Promise<string> {
     return await argon2.hash(password);
@@ -30,7 +34,10 @@ export class AuthService {
   }
 
   async logout(refreshToken: string): Promise<void> {
-    // Implement token invalidation logic here
+    await this.prisma.refreshToken.updateMany({
+      where: { token: refreshToken, deletedAt: null },
+      data: { deletedAt: new Date() },
+    });
   }
 
   private generateRefreshToken(): string {

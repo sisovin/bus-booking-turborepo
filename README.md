@@ -136,3 +136,21 @@ web/
    ```bash
    pnpm run dev
    ```
+
+### Setting up Redis
+1. Ensure you have Docker installed on your machine.
+
+2. Navigate to the root directory of the project:
+   ```bash
+   cd bus-booking-turborepo
+   ```
+
+3. Start the Redis service using Docker Compose:
+   ```bash
+   docker-compose up -d redis
+   ```
+
+4. Verify that the Redis service is running:
+   ```bash
+   docker-compose ps
+   ```

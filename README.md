@@ -1,5 +1,6 @@
 # Bus Booking Turborepo 
 ## Project Overview
+This project is a bus booking system built using a monorepo structure with Turborepo. It consists of a backend built with NestJs (TypeScript) and a frontend built with NextJs (TypeScript). The backend handles authentication, bookings, buses, and seats, while the frontend provides a user interface for users to search for buses, book seats, and manage their bookings.
 
 ## Full Project Structure 
 ```
@@ -93,5 +94,45 @@ web/
 ```
 ## How to install 
 ### Backend with NestJs (TypeScript)
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/sisovin/bus-booking-turborepo.git
+   cd bus-booking-turborepo
+   ```
+
+2. Navigate to the backend directory:
+   ```bash
+   cd apps/api
+   ```
+
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Set up the environment variables:
+   Create a `.env` file in the `apps/api` directory and add the necessary environment variables. Refer to the `.env.example` file for the required variables.
+
+5. Run the application:
+   ```bash
+   npm run start:dev
+   ```
 
 ### Frontend with NextJs (TypeScript)
+1. Navigate to the frontend directory:
+   ```bash
+   cd apps/web
+   ```
+
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up the environment variables:
+   Create a `.env` file in the `apps/web` directory and add the necessary environment variables. Refer to the `.env.example` file for the required variables.
+
+4. Run the application:
+   ```bash
+   npm run dev
+   ```

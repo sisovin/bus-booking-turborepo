@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import SearchForm from '../../components/SearchForm';
 
 const SearchPage = () => {
-  const [city, setCity] = useState('');
-  const [date, setDate] = useState('');
   const [buses, setBuses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSearch = async () => {
+  const handleSearch = async (city, date) => {
     setLoading(true);
     setError('');
     try {
@@ -26,25 +25,7 @@ const SearchPage = () => {
   return (
     <div>
       <h1>Search Buses</h1>
-      <div>
-        <label>City:</label>
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Date:</label>
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          required
-        />
-      </div>
-      <button onClick={handleSearch}>Search</button>
+      <SearchForm onSearch={handleSearch} />
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       <ul>

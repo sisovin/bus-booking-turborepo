@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-const BusCard = ({ bus }) => (
-  <div className="bus-card">
-    <h2>{bus.name}</h2>
-    <p>{bus.details}</p>
-  </div>
-);
+import BusCard from '../../components/BusCard';
 
 const BusesPage = () => {
   const [buses, setBuses] = useState([]);

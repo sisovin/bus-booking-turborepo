@@ -3,21 +3,21 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { checkAuth } from '../../../utils/auth';
 
-const BookingDetailsPage = () => {
+const BookingDetailsPage = ({ id }) => {
   const [booking, setBooking] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const router = useRouter();
-  const { id } = router.query;
 
   useEffect(() => {
     const fetchBookingDetails = async () => {
+      const isAuthenticated = await checkAuth();
+      if (!isAuthenticated) {
+        router.push('/login');
+        return;
+      }
+
       try {
-        const isAuthenticated = await checkAuth();
-        if (!isAuthenticated) {
-          router.push('/login');
-          return;
-        }
         const response = await axios.get(`/api/bookings/${id}`);
         setBooking(response.data);
       } catch (err) {
@@ -27,9 +27,7 @@ const BookingDetailsPage = () => {
       }
     };
 
-    if (id) {
-      fetchBookingDetails();
-    }
+    fetchBookingDetails();
   }, [id, router]);
 
   if (loading) {
@@ -45,12 +43,14 @@ const BookingDetailsPage = () => {
       <h1>Booking Details</h1>
       {booking ? (
         <div>
-          <p>ID: {booking.id}</p>
-          <p>Details: {booking.details}</p>
-          {/* Add more booking details as needed */}
+          <p>Booking ID: {booking.id}</p>
+          <p>Bus ID: {booking.busId}</p>
+          <p>Seat Number: {booking.seatNumber}</p>
+          <p>Created At: {new Date(booking.createdAt).toLocaleString()}</p>
+          <p>Updated At: {new Date(booking.updatedAt).toLocaleString()}</p>
         </div>
       ) : (
-        <p>No booking details found</p>
+        <p>No booking details available</p>
       )}
     </div>
   );

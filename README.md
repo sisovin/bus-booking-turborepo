@@ -107,7 +107,7 @@ web/
 
 3. Install the dependencies:
    ```bash
-   npm install
+   pnpm install
    ```
 
 4. Set up the environment variables:
@@ -115,7 +115,7 @@ web/
 
 5. Run the application:
    ```bash
-   npm run start:dev
+   pnpm run start:dev
    ```
 
 ### Frontend with NextJs (TypeScript)
@@ -126,7 +126,7 @@ web/
 
 2. Install the dependencies:
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. Set up the environment variables:
@@ -134,5 +134,5 @@ web/
 
 4. Run the application:
    ```bash
-   npm run dev
+   pnpm run dev
    ```
